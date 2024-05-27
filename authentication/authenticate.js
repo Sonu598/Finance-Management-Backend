@@ -1,11 +1,12 @@
 const jwt = require("jsonwebtoken");
 
 const authenticate = (req, res, next) => {
-  const token = req.headers["authorization"];
+  const tokenWithBearer = req.headers["authorization"];
 
-  if (!token) {
+  if (!tokenWithBearer) {
     return res.status(403).json({ error: "No token provided" });
   }
+  const token = tokenWithBearer.split(" ")[0];
 
   jwt.verify(token, "secrete", (err, decoded) => {
     if (err) {
