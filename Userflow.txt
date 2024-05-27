@@ -1,0 +1,25 @@
+Personal Finance Management System
+User Workflow
+
+User Registration and Authentication:
+
+[Sign Up Page] 
+[Login Page] -> [Receive JWT Token]
+
+Managing Transactions:
+
+[Transaction Entry Page] 
+[Transaction List Page] -> [Display Transactions]
+[Delete Transaction] -> 
+
+Budget Management:
+
+[Budget Entry Page] -> 
+[Budget List Page] -> [Display Budgets]
+
+Generating Financial Reports:
+
+[Monthly Report Page] -> [Select Month/Year] -> [Display Report]
+[Category-wise Report Page] -> [Display Report]
+
+
