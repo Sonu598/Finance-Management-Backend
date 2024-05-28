@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+require("dotenv").config();
 
 userRouter.post("/register", async (req, res) => {
   const { email, password } = req.body;
@@ -35,7 +36,9 @@ userRouter.post("/login", async (req, res) => {
     return res.status(401).json({ error: "Invalid credentials" });
   }
 
-  const token = jwt.sign({ userId: user.id }, "secrete", { expiresIn: "1h" });
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
   res.send({ msg: "Login successful", token });
 });
 

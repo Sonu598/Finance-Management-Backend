@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 transactionRouter.post("/create", authenticate, async (req, res) => {
   const { amount, type, categoryId } = req.body;
 
-  const transaction = await prisma.transaction.create({
+  const newTransaction = await prisma.transaction.create({
     data: {
       amount,
       type,
@@ -16,16 +16,16 @@ transactionRouter.post("/create", authenticate, async (req, res) => {
     },
   });
 
-  res.status(201).json(transaction);
+  res.status(201).json(newTransaction);
 });
 
 transactionRouter.get("/all", authenticate, async (req, res) => {
-  const transactions = await prisma.transaction.findMany({
+  const allTransactions = await prisma.transaction.findMany({
     where: { userId: req.userId },
     include: { category: true },
   });
 
-  res.json(transactions);
+  res.json(allTransactions);
 });
 
 transactionRouter.delete("/remove/:id", authenticate, async (req, res) => {
